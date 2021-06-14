@@ -48,7 +48,7 @@ const fetchData = () =>{
     .post(`/students/sendrequest/${student.student._id}/${id}`)
     .then(function (response) {
       if (response.status === 200) {
-         console.log(response.data)
+        //  console.log(response.data)
          setIsLoading(false)
         setMessages({
           success: response.data.message,
@@ -82,16 +82,36 @@ const cancelFriendRequest=(id)=>{
         setError({cancel:err.response.data.message,friend:""})
       })
  }
-const requestFilter = (suggestionInd) =>{
-  for(let i=0;i<student.student.requestsSent.length;i++){
-      if(suggestions[suggestionInd]._id === student.student.requestsSent[i].studentID){
-        return true;
+ const [isPresent, setIsPresent] = useState([]);
+ const [isFriend, setIsFriend] = useState([]);
+ const requestFilter = (suggestionInd) => {
+  if(student.requestsSent.length > 0){
+    for (let i = 0; i < student.requestsSent.length; i++) {
+      if (
+        suggestions[suggestionInd]._id === student.requestsSent[i]._id
+      ) {
+        isPresent.push(true);
+      } else {
+        isPresent.push(false);
       }
-      else{
-        return false;
-      }
+    }
+    return isPresent[suggestionInd];
   }
-}
+  else {
+    return;
+  }
+};
+const friendFilter = (suggestionInd) => {
+  //  console.log(suggestionInd)
+  for (let i = 0; i < student.friends.length; i++) {
+    if (suggestions[suggestionInd]._id === student.friends[i]._id) {
+      isFriend.push(false);
+    } else {
+      isFriend.push(true);
+    }
+  }
+  return isFriend[suggestionInd];
+};
   return (
     <>
       <div class="suggestions" id="sticky-sidebar">
@@ -99,6 +119,7 @@ const requestFilter = (suggestionInd) =>{
         {suggestions.filter(suggestion => suggestion._id !== student.student._id).map((data,index) => {
           return (
             <Fragment key={nanoid()}>
+               {friendFilter(index) ? (
               <div class="follow-user">
                 <img
                   src={data.profilePicture}
@@ -121,6 +142,7 @@ const requestFilter = (suggestionInd) =>{
                   
                 </div>
               </div>
+               ): null}
             </Fragment>
           );
         })}
