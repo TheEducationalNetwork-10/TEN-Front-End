@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Row,Col } from "react-bootstrap";
-import Footer from "../components/LayoutComponent/Footer";
-import Header from "../components/LayoutComponent/Header";
+// import Footer from "../components/LayoutComponent/Footer";
+// import Header from "../components/LayoutComponent/Header";
 import ChatBlock from "../components/NewsFeedComponent/ChatBlock";
 import NewsFeedNav from "../components/NewsFeedComponent/NewsFeedNav";
 import NewsFeedSuggestion from "../components/NewsFeedComponent/NewsFeedSuggestions";
@@ -11,7 +11,7 @@ import NewsFeedUserImages from "../components/NewsFeedComponent/NewsFeedUserImag
 const NewsFeedImages = () => {
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <div id="page-contents">
         <Container>
           <Row>
@@ -30,7 +30,7 @@ const NewsFeedImages = () => {
           </Row>
         </Container>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };

@@ -1,120 +1,190 @@
 import { nanoid } from "nanoid";
-import React, { Fragment } from "react"
-import {Row,Col} from "react-bootstrap"
+import React, { Fragment, useEffect, useState } from "react";
+import { Row, Col,Spinner } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
-import profile from "../../images/profileImg.png"
-const PeopleNearby = () =>{
-    const nearbyPeople = [
-        {
-            profileImg:profile,
-            userProfile:"#",
-            userName:"Sophia Page",
-            work:"Software Engineer",
-            distance:"500m away",
-            friend:false,
-        },
-        {
-            profileImg:profile,
-            userProfile:"#",
-            userName:"Emma Johnson",
-            work:"Model At Fashion",
-            distance:"800m away",
-            friend:false,
-        },
-        {
-            profileImg:profile,
-            userProfile:"#",
-            userName:"Nora Wilson",
-            work:"Writer At Newspaper",
-            distance:"2.5km away",
-            friend:false,
-        },
-        {
-            profileImg:profile,
-            userProfile:"#",
-            userName:"Diana Amber",
-            work:"Student",
-            distance:"700m away",
-            friend:false,
-        },
-        {
-            profileImg:profile,
-            userProfile:"#",
-            userName:"Addison Thomas",
-            work:"Barber At Fashion",
-            distance:"1.5k away",
-            friend:false,
-        },
-        {
-            profileImg:profile,
-            userProfile:"#",
-            userName:"Jonathon Thompson",
-            work:"Fashion Designer",
-            distance:"2k away",
-            friend:false,
-        },
-        {
-            profileImg:profile,
-            userProfile:"#",
-            userName:"Olivia Steward",
-            work:"Creative Director",
-            distance:"2k away",
-            friend:false,
-        },
-        {
-            profileImg:profile,
-            userProfile:"#",
-            userName:"Elena Foster",
-            work:"Executive Officer",
-            distance:"4k away",
-            friend:false,
-        },
-        {
-            profileImg:profile,
-            userProfile:"#",
-            userName:"Brian Walton",
-            work:"Designer at Designer Inc.",
-            distance:"3k away",
-            friend:false,
-        },
-        {
-            profileImg:profile,
-            userProfile:"#",
-            userName:"Cris Haris",
-            work:"General Manager at Manager Inc.",
-            distance:"1k away",
-            friend:false,
-        },
-    ]
-    return(
-        <>
-            <div class="people-nearby">
-              <div class="google-maps">
-                <div id="map" class="map"><iframe title="my address" width="100%" height="300" frameBorder="0" scrolling="no" marginHeight="0" marginWidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=228%20Park%20Eve,%20New%20York+(My%20address)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe></div>
+import profile from "../../images/profileImg.png";
+import Cookies from "universal-cookie";
+import axiosConfig from "../../Config/axiosConfig";
+const PeopleNearby = () => {
+  const cookies = new Cookies();
+  let student = JSON.parse(localStorage.getItem("newStudent"))
+  const [suggestions, setSuggestions] = useState([]);
+  const [isLoading,setIsLoading] = useState(false)
+  const [messages,setMessages] = useState({
+      success:"",
+  })
+  const getStudents = () => {
+    axiosConfig.get(`/students`).then(function (response) {
+        if (response.status === 200) {
+            setSuggestions(response.data.data);
+            //  console.log(response.data.data)
+        }
+      });
+  }
+  const fetchData = () =>{
+    axiosConfig
+        .get(`/students/${student.student._id}`)
+        .then(function (response) {
+          if (response.status === 200) {
+            localStorage.setItem("newStudent",JSON.stringify(response.data.data), {
+              path: "/",
+            });
+
+          }
+        });
+  }
+  useEffect(() => {
+    getStudents();
+    fetchData();
+ }, []);
+ const [error,setError] = useState({
+   friend:"",
+   cancel:""
+ });
+ const friendRequest=(id)=>{
+  setMessages({
+    success:"",
+  });
+  setIsLoading(true)
+    axiosConfig
+      .post(`/students/sendrequest/${student.student._id}/${id}`)
+      .then(function (response) {
+        if (response.status === 200) {
+          setIsLoading(false)
+        fetchData();
+          setMessages({
+            success: response.data.message,
+          });
+          setError({friend:"",cancel:""})
+        }
+      })
+      .catch(function(err){
+        setIsLoading(false)
+        setError({friend:err.response.data.message,cancel:""})
+      })
+ }
+ const cancelFriendRequest=(id)=>{
+  setMessages({
+    success:"",
+  });
+  setIsLoading(true)
+    axiosConfig
+      .post(`/students/cancelrequest/${student.student._id}/${id}`)
+      .then(function (response) {
+        if (response.status === 200) {
+          fetchData()
+          setIsLoading(false)
+          setMessages({
+            success: response.data.message,
+          });
+          setError({friend:"",cancel:""})
+        }
+      })
+      .catch(function(err){
+        setIsLoading(false)
+        setError({cancel:err.response.data.message,friend:""})
+      })
+ }
+ const [isPresent,setIsPresent] = useState([])
+ const [isFriend,setIsFriend] = useState([])
+//  const [isIndex,setIsIndex] = useState([])
+ const requestFilter = (suggestionInd) =>{
+    for(let i=0;i<student.requestsSent.length;i++){
+        if(suggestions[suggestionInd]._id === student.requestsSent[i].studentID){
+          isPresent.push(true)
+        }
+        else{
+          isPresent.push(false)
+          
+        }
+    }
+    return isPresent[suggestionInd]
+  }
+  // const friendFilter = (suggestionInd) =>{
+  //   //  console.log(suggestionInd)
+  //     for(let i=0;i<suggestions.length;i++){
+  //        console.log(student.friends[i].studentID)
+  //         // console.log(suggestions[suggestionInd]._id === student.friends[i].studentID)
+  //         if(suggestions[suggestionInd]._id === student.friends[i].studentID){
+  //           isFriend.push(true)
+  //         }
+  //         else{
+  //           isFriend.push(false)
+            
+  //         }
+  //     }
+  //       // console.log(isFriend[3])
+  
+  //     return isFriend[suggestionInd]
+  //   }
+
+// useEffect(()=>{
+//   if(isIndex > -1){
+//     requestFilter(isIndex);
+//   }
+  
+// },[isIndex])
+  return (
+    <>
+      <div class="people-nearby">
+        <h1 className="text-center">People You May Know</h1>
+        {suggestions.filter((suggestion) => suggestion._id !== student.student._id).map((data,index) => {
+          return (
+            <Fragment key={nanoid()}>
+              <div class="nearby-user">
+                <Row>
+                  <Col md={2} sm={2}>
+                    <img
+                      src={data.profilePicture}
+                      alt={data.firstName}
+                      class="profile-photo-lg"
+                    />
+                  </Col>
+                  <Col md={7} sm={7}>
+                    <h5>
+                      <NavLink to="#" class="profile-link">
+                        {data.firstName} {data.lastName}
+                      </NavLink>
+                    </h5>
+                    <p style={{ textTransform: "capitalize" }}>
+                      Studies At: {data.universityName}
+                    </p>
+                    <p className="text-muted">From: {data.city}</p>
+                  </Col>
+                  <Col md={3} sm={3}>
+                  {/* {isIndex.push(index) } */}
+                  {requestFilter(index)? (
+                   <button onClick={()=>cancelFriendRequest(data._id)} className="btn btn-primary pull-right">
+                   Cancel Request
+                 </button>
+                  ): (
+                    <button onClick={()=>friendRequest(data._id)} className="btn btn-primary pull-right">
+                    Add A Friend
+                    </button>
+                  )}
+                  </Col>
+                </Row>
+              </div>
+              
+            </Fragment>
+          );
+        })}
+        {messages.success ? (
+            <p className="success">{messages.success}</p> 
+        ): null}
+        {error.friend ? (
+            <p className="error">{error.friend}</p> 
+        ): null}
+        {error.cancel ? (
+            <p className="error">{error.cancel}</p> 
+        ): null}
+        {isLoading ? (
+          <div className="loading">
+            <Spinner animation="border" variant="primary" />
             </div>
-            {nearbyPeople.map((data)=>{
-                return(
-                    <Fragment key={nanoid()}>
-                        <div class="nearby-user">
-                            <Row>
-                            <Col md={2} sm={2}>
-                                <img src={data.profileImg} alt={data.userName} class="profile-photo-lg" />
-                            </Col>
-                            <Col md={7} sm={7}>
-                                <h5><NavLink to={data.userProfile} class="profile-link">{data.userName}</NavLink></h5>
-                                <p>{data.work}</p>
-                                <p class="text-muted">{data.distance}</p>
-                            </Col>
-                            <Col md={3} sm={3}>
-                                <button class="btn btn-primary pull-right">{data.friend ? "Friend" : "Add A Friend"}</button>
-                            </Col>
-                            </Row>
-                        </div>
-                    </Fragment>
-                )
-            })}
-            </div>
-        </>
-    )
-}
+        ): null}
+      </div>
+    </>
+  );
+};
 export default PeopleNearby;

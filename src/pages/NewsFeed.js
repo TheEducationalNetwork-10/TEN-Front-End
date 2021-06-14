@@ -1,18 +1,19 @@
 import React from "react";
 import { Container, Row,Col } from "react-bootstrap";
-import Footer from "../components/LayoutComponent/Footer";
-import Header from "../components/LayoutComponent/Header";
+// import Footer from "../components/LayoutComponent/Footer";
+// import Header from "../components/LayoutComponent/Header";
 import ChatBlock from "../components/NewsFeedComponent/ChatBlock";
 import NewsFeedContent from "../components/NewsFeedComponent/NewsFeedContent";
 import NewsFeedNav from "../components/NewsFeedComponent/NewsFeedNav";
 import NewsFeedSuggestion from "../components/NewsFeedComponent/NewsFeedSuggestions";
 import ProfileCard from "../components/NewsFeedComponent/ProfileCard";
+import FriendRequest from "../components/Notifications/FriendRequest";
 import CreatePost from "../components/TimelineComponent/CreatePost"
 
 const NewsFeed = () => {
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <div id="page-contents">
         <Container>
           <Row>
@@ -23,6 +24,7 @@ const NewsFeed = () => {
               </Col>
               <Col md={7}>
                 <CreatePost/>
+                <FriendRequest/>
                 <NewsFeedContent/>
               </Col>
               <Col md={2}>
@@ -31,7 +33,7 @@ const NewsFeed = () => {
           </Row>
         </Container>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };

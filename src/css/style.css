@@ -368,7 +368,7 @@ textarea{
 }
 
 .menu{
-  background: #231F20;
+  background: #9056A7;
   border: none;
   border-radius: 0;
   margin-bottom: 0;
@@ -422,7 +422,7 @@ textarea{
 }
 
 .menu ul.main-menu li ul.dropdown-menu{
-  background: #231F20;
+  background: #9056A7;
   box-shadow: none;
   border: 0;
   padding: 0;
@@ -431,7 +431,7 @@ textarea{
 .menu ul.main-menu li ul.dropdown-menu li{
   list-style: none;
   padding: 5px 0;
-  border-bottom: 1px solid rgba(255,255,255, 0.1)
+  border-bottom: 1px solid rgba(255,255,255, 1)
 }
 
 .menu ul.main-menu li ul.dropdown-menu li a, .menu ul.main-menu li.open ul.dropdown-menu li a{
@@ -1320,7 +1320,17 @@ ul.online-users li span.online-dot{
   right: 0;
   top: 0;
 }
-
+.post-content .post-container .delete__post{
+  margin: 10px 0px;
+  display: flex;
+  flex-direction: row-reverse;
+}
+.post-content .post-container .delete__post button{
+  border: none;
+  padding: 10px;
+  font-weight: bold;
+  color: red;
+}
 .post-content .post-container .post-detail .post-comment{
   display: inline-flex;
   margin: 10px auto;
@@ -2106,7 +2116,7 @@ input:checked + .slider:before{
   ==================================================*/
 
 .page-title-section.faq{
-  background: linear-gradient(to right, rgba(0,0,0, 0.5) , rgba(0,0,0, 0.5)), url("http://placehold.it/1920x500") fixed no-repeat;
+  background: linear-gradient(to right, rgba(0,0,0, 0.5) , rgba(0,0,0, 0.5)), fixed no-repeat;
   background-size: cover;
   background-position: center;
   padding: 90px 0 110px;
@@ -2314,7 +2324,84 @@ input:checked + .slider:before{
   padding-right: 20px;
 }
 
-
+/*==================================================
+  Email Verification Page
+  ==================================================*/
+.emailVerification {
+  margin-bottom: 10px;
+}
+.emailVerification .verificationForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.emailVerification .verificationForm h1 {
+  font-size: 36px;
+  font-weight: 600;
+  color: #252525;
+  padding-bottom: 15px;
+}
+.emailVerification .verificationForm p {
+  color: #444444;
+  font-size: 18px;
+  padding-bottom: 20px;
+}
+.emailVerification .verificationForm input {
+  padding: 10px;
+  border: 5px solid #efefef;
+  width: 250px;
+}
+.emailVerification .verificationForm input:hover{
+  outline: none;
+  border: 5px solid #444;
+}
+.emailVerification .verificationForm button {
+  width: 250px;
+  margin-top: 25px;
+  color: #52749d;
+  font-size: 18px;
+  font-weight: 600;
+  border: none;
+  border-radius: 25px;
+  padding: 10px 40px;
+}
+.emailVerification .verificationForm button:hover{
+  text-decoration: none;
+  background: #52749D;
+  border:none;
+  color: white;
+}
+.emailVerification .verificationForm button:disabled,
+.emailVerification .verificationForm button[disabled] {
+    border: 1px solid #999999;
+    background-color: #cccccc;
+    color: #666666;
+  }
+.emailVerification .time p {
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 0px;
+    margin: 0px;
+}
+.forgotFields {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+ 
+}
+.forgotFields label {
+  margin: 0px;
+}
+/*==================================================
+  Forgot Password Page
+  ==================================================*/
+.forgot_password {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-top: 25px;
+}
 /*==================================================
   Site Footer
   ==================================================*/
@@ -2454,6 +2541,8 @@ ul.contact li i{
 
   .post-content .post-container .post-detail .reaction{position: relative;}
 
+  
+  
   #footer .footer-wrapper ul{margin-bottom: 20px;}
 
   .contact-us .col-sm-7{margin-bottom: 20px !important;}
@@ -2613,7 +2702,15 @@ ul.contact li i{
 }
 
 /* My work */
-
+.react-datepicker__input-container input{
+  background: #fff;
+  color: #939598;
+  border-radius: 30px;
+  box-shadow: none;
+  width: 100%;
+  border: 1px solid #f1f2f2;
+  padding-left: 15px;
+}
 .main-menu{
   display: flex !important;
   flex-direction: row;
@@ -2630,7 +2727,7 @@ a.navbar-brand {
   align-items: center;
 }
 .navbar-brand>img {
-  width: 150px;
+  width: 70px;
   filter: brightness(0) invert(1);
 }
 .logo img{
@@ -2638,4 +2735,66 @@ a.navbar-brand {
 }
 img.footer-logo {
   width: 150px;
+}
+/*Miscellaneous*/
+.friend__request__notification {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  background: #eee;
+  margin-bottom: 10px;
+}
+
+.friend__request__notification h1{
+  font-size: 24px;
+}
+.friend__request__notification h1 span{
+  font-size: 18px;
+}
+.decision__button button{
+  background-color:#39bcea;
+  color: white;
+  border: none;
+  padding: 5px;
+  margin-right: 5px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+button.add__friend_suggestion {
+  border: none;
+  font-weight: bold;
+  background: none;
+  color: green;
+  padding: 0px;
+}
+/* Remove Number Incrementer */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+p.success {
+    color: green;
+    font-weight: bold;
+    text-align: center;
+    padding-top: 10px;
+    font-size: 18px;
+}
+
+p.error {
+    color: red;
+    font-weight: bold;
+    text-align: center;
+    padding-top: 10px;
+    font-size: 18px;
+}
+.loading {
+  padding-top: 10px;
+  text-align: center;
 }

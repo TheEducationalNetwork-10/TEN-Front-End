@@ -78,13 +78,13 @@ const ContactForm = () =>{
                       <span class="phone-icon">
                         <i class="icon ion-email"></i>
                       </span>
-                      <p>info@thunder-team.com</p>
+                      <p>theeducationalnetwork.ten@gmail.com</p>
                     </div>
                     <div class="reach">
                       <span class="phone-icon">
                         <i class="icon ion-ios-location"></i>
                       </span>
-                      <p>228 Park Ave S NY, USA</p>
+                      <p>228 Park Ave S Karachi, Pak</p>
                     </div>
                     <ul class="list-inline social-icons">
                       <li>

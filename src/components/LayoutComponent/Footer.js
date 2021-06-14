@@ -55,16 +55,16 @@ const Footer = () =>{
             <div className="col-md-3 col-sm-3">
               <h6>Contact Us</h6>
                 <ul className="contact">
-                	<li><i className="icon ion-ios-telephone-outline"></i>+1 (234) 222 0754</li>
-                	<li><i className="icon ion-ios-email-outline"></i>info@thunder-team.com</li>
-                  <li><i className="icon ion-ios-location-outline"></i>228 Park Ave S NY, USA</li>
+                	<li><i className="icon ion-ios-telephone-outline"></i>+1 (234) 456 7890</li>
+                	<li><i className="icon ion-ios-email-outline"></i>theeducationalnetwork.ten@gmail.com</li>
+                  <li><i className="icon ion-ios-location-outline"></i>228 Park Ave S KH, Pak</li>
                 </ul>
             </div>
           </div>
       	</div>
       </div>
       <div className="copyright">
-        <p>copyright @we1all 2021. All rights reserved</p>
+        <p>copyright @TEN 2021. All rights reserved</p>
       </div>
 		</footer>
         </>

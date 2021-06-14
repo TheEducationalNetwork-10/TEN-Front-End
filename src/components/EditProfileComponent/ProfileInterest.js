@@ -13,11 +13,11 @@ const ProfileInterest = () =>{
                 </div>
                 <div class="edit-block">
                   <ul class="list-inline interests">
-                  	<li><NavLink to=""><i class="icon ion-android-bicycle"></i> Bycicle</NavLink></li>
-                  	<li><NavLink to=""><i class="icon ion-ios-camera"></i> Photgraphy</NavLink></li>
-                  	<li><NavLink to=""><i class="icon ion-android-cart"></i> Shopping</NavLink></li>
-                  	<li><NavLink to=""><i class="icon ion-android-plane"></i> Traveling</NavLink></li>
-                  	<li><NavLink to=""><i class="icon ion-android-restaurant"></i> Eating</NavLink></li>
+                  	<li><NavLink to="#"><i class="icon ion-android-bicycle"></i> Bycicle</NavLink></li>
+                  	<li><NavLink to="#"><i class="icon ion-ios-camera"></i> Photgraphy</NavLink></li>
+                  	<li><NavLink to="#"><i class="icon ion-android-cart"></i> Shopping</NavLink></li>
+                  	<li><NavLink to="#"><i class="icon ion-android-plane"></i> Traveling</NavLink></li>
+                  	<li><NavLink to="#"><i class="icon ion-android-restaurant"></i> Eating</NavLink></li>
                   </ul>
                   <div class="line"></div>
                   <div class="row">

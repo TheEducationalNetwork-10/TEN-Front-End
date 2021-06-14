@@ -1,67 +1,36 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState, useEffect} from "react";
 import { NavLink } from "react-router-dom";
-import Profile from "../../images/profileImg.png";
+// import Profile from "../../images/profileImg.png";
+import Cookies from "universal-cookie"
+import axiosConfig from "../../Config/axiosConfig"
 const ChatBlock = () => {
-  const onlineUsers = [
-    {
-      chatLink: "/newsfeed-messages",
-      userTitle: "Linda Lohan",
-      userProfile: Profile,
-    },
-    {
-      chatLink: "/newsfeed-messages",
-      userTitle: "Sophia Lee",
-      userProfile: Profile,
-    },
-    {
-      chatLink: "/newsfeed-messages",
-      userTitle: "John Doe",
-      userProfile: Profile,
-    },
-    {
-      chatLink: "/newsfeed-messages",
-      userTitle: "Alexis Clark",
-      userProfile: Profile,
-    },
-    {
-      chatLink: "/newsfeed-messages",
-      userTitle: "James Carter",
-      userProfile: Profile,
-    },
-    {
-      chatLink: "/newsfeed-messages",
-      userTitle: "Robert Cook",
-      userProfile: Profile,
-    },
-    {
-      chatLink: "/newsfeed-messages",
-      userTitle: "Richard Bell",
-      userProfile: Profile,
-    },
-    {
-      chatLink: "/newsfeed-messages",
-      userTitle: "Anna Young",
-      userProfile: Profile,
-    },
-    {
-      chatLink: "/newsfeed-messages",
-      userTitle: "Julia Cox",
-      userProfile: Profile,
-    },
-  ];
+  const cookies = new Cookies();
+  let student = JSON.parse(localStorage.getItem("newStudent"))
+  const [users,setUsers] = useState([])
+  const fetchUsers = () =>{
+    axiosConfig
+    .get("/students")
+    .then(function (response) {
+      // console.log(response.data.data)
+      setUsers(response.data.data)
+    })
+  }
+  useEffect(() => {
+    fetchUsers();
+  },[])
   return (
     <>
       <div id="chat-block">
         <div class="title">Chat online</div>
         <ul class="online-users list-inline">
-          {onlineUsers.map((data) => {
+          {users.filter(users => users._id !== student.student._id).map((data) => {
             return (
               <Fragment>
                 <li>
-                  <NavLink to={data.chatLink} title={data.userTitle}>
+                  <NavLink to="/newsfeed-messages" title={data.firstName}>
                     <img
-                      src={data.userProfile}
-                      alt={data.userTitle}
+                      src={data.profilePicture}
+                      alt={data.firstName}
                       class="img-responsive profile-photo"
                     />
                     <span class="online-dot"></span>

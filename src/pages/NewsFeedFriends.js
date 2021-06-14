@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Row,Col } from "react-bootstrap";
-import Footer from "../components/LayoutComponent/Footer";
-import Header from "../components/LayoutComponent/Header";
+// import Footer from "../components/LayoutComponent/Footer";
+// import Header from "../components/LayoutComponent/Header";
 import ChatBlock from "../components/NewsFeedComponent/ChatBlock";
 import NewsFeedContent from "../components/NewsFeedComponent/NewsFeedContent";
 import NewsFeedNav from "../components/NewsFeedComponent/NewsFeedNav";
@@ -12,7 +12,7 @@ import ProfileFriends from "../components/TimelineComponent/ProfileFriends"
 const NewsFeedFriends = () => {
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <div id="page-contents">
         <Container>
           <Row>
@@ -31,7 +31,7 @@ const NewsFeedFriends = () => {
           </Row>
         </Container>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };

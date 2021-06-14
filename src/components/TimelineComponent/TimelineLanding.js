@@ -3,6 +3,7 @@ import ProfileNotification from "../EditProfileComponent/ProfileNotification"
 import {Row,Col} from "react-bootstrap"
 import CreatePost from "./CreatePost"
 import PostContent from "./PostContent"
+import FriendRequest from "../Notifications/FriendRequest"
 const TimelineLanding = () =>{
     return(
         <>
@@ -15,6 +16,7 @@ const TimelineLanding = () =>{
               {/*  <!-- Post Create Box
               ================================================= --> */}
                 <CreatePost/>
+                <FriendRequest/>
                 {/* <!-- Post Content
               ================================================= --> */}
                 <PostContent/>

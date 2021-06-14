@@ -1,6 +1,9 @@
 import React from "react";
-
+import Cookies from "universal-cookie"
 const ProfileWork = () => {
+  const cookies = new Cookies();
+
+  let student=JSON.parse(localStorage.getItem("newStudent"))
   return (
     <>
       <div class="edit-profile-container">
@@ -28,7 +31,8 @@ const ProfileWork = () => {
                   name="school"
                   title="Enter School"
                   placeholder="My School"
-                  value="Harvard Unversity"
+                  value={student.student.universityName}
+                  disabled
                 />
               </div>
             </div>
@@ -42,7 +46,7 @@ const ProfileWork = () => {
                   name="date"
                   title="Enter a Date"
                   placeholder="from"
-                  value="2012"
+                  value=""
                 />
               </div>
               <div class="form-group col-xs-6">
@@ -56,7 +60,7 @@ const ProfileWork = () => {
                   name="date"
                   title="Enter a Date"
                   placeholder="to"
-                  value="2016"
+                  value=""
                 />
               </div>
             </div>
@@ -67,19 +71,15 @@ const ProfileWork = () => {
                   id="edu-description"
                   name="description"
                   class="form-control"
-                  placeholder="Some texts about my education"
+                  placeholder="Description About Education"
                   rows="4"
                   cols="400"
-                >
-                  At vero eos et accusamus et iusto odio dignissimos ducimus qui
-                  blanditiis praesentium voluptatum deleniti atque corrupti quos
-                  dolores et quas molestias excepturi sint occaecati cupiditate
-                </textarea>
+                />
               </div>
             </div>
             <div class="row">
               <div class="form-group col-xs-12">
-                <label for="graduate">Graduated?:-</label>
+                <label for="graduate">Graduated?</label>
                 <input
                   id="graduate"
                   type="checkbox"
@@ -172,7 +172,7 @@ const ProfileWork = () => {
                   name="city"
                   title="Enter city"
                   placeholder="Your city"
-                  value="Melbourne"
+                  value="Karachi"
                 />
               </div>
             </div>

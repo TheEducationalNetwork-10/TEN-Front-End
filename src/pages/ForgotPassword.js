@@ -1,15 +1,15 @@
 import React from "react";
-import ContactForm from "../components/ContactComponent/ContactForm";
+import ForgotPasswordForm from "../components/Verification/ForgotPasswordForm";
 // import Footer from "../components/LayoutComponent/Footer";
 // import Header from "../components/LayoutComponent/Header";
 
-const Contact = () => {
+const ForgotPassword = () => {
   return (
     <>
       {/* <Header/> */}
-      <ContactForm/>
+      <ForgotPasswordForm/>
       {/* <Footer/> */}
     </>
   );
 };
-export default Contact;
+export default ForgotPassword;

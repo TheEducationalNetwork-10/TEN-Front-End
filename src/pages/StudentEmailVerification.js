@@ -1,15 +1,15 @@
 import React from "react";
-import ContactForm from "../components/ContactComponent/ContactForm";
+import EmailVerificationForm from "../components/Verification/EmailVerificationForm";
 // import Footer from "../components/LayoutComponent/Footer";
 // import Header from "../components/LayoutComponent/Header";
 
-const Contact = () => {
+const StudentEmailVerification = () => {
   return (
     <>
       {/* <Header/> */}
-      <ContactForm/>
+      <EmailVerificationForm/>
       {/* <Footer/> */}
     </>
   );
 };
-export default Contact;
+export default StudentEmailVerification;

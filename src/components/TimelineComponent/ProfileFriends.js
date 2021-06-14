@@ -5,6 +5,8 @@ import { NavLink } from "react-router-dom";
 import profile from "../../images/profileImg.png"
 
 const ProfileFriends = () => {
+  let student  = JSON.parse(localStorage.getItem("newStudent"))
+  console.log(student.friends)
   const FriendsList = [
     {
       name: "Sopia Lee",
@@ -65,19 +67,19 @@ const ProfileFriends = () => {
     <>
       <div class="friend-list">
         <Row>
-          {FriendsList.map((data) => {
+          {student.friends.map((data) => {
             return (
               <>
                 <Col md={6} sm={6} key={nanoid()}>
                   <div class="friend-card">
                     <img
-                      src={data.coverPic}
+                      src="http://placehold.it/1030x360"
                       alt="profile-cover"
                       class="img-responsive cover"
                     />
                     <div class="card-info">
                       <img
-                        src={data.displayPic}
+                        src={data.profilePicture}
                         alt="user"
                         class="profile-photo-lg"
                       />
@@ -86,11 +88,11 @@ const ProfileFriends = () => {
                           My Friend
                         </NavLink>
                         <h5>
-                          <a href="timeline.html" class="profile-link">
-                            {data.name}
+                          <a href="timeline.html" class="profile-link" style={{ textTransform: "capitalize" }}>
+                            {data.firstName} {data.lastName}
                           </a>
                         </h5>
-                        <p>{data.work}</p>
+                        <p style={{ textTransform: "capitalize" }}>Studies At: {data.universityName}</p>
                       </div>
                     </div>
                   </div>

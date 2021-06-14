@@ -1,9 +1,9 @@
 import React from "react";
 import { Container, Row,Col } from "react-bootstrap";
-import Footer from "../components/LayoutComponent/Footer";
-import Header from "../components/LayoutComponent/Header";
+// import Footer from "../components/LayoutComponent/Footer";
+// import Header from "../components/LayoutComponent/Header";
 import ChatBlock from "../components/NewsFeedComponent/ChatBlock";
-import NewsFeedContent from "../components/NewsFeedComponent/NewsFeedContent";
+// import NewsFeedContent from "../components/NewsFeedComponent/NewsFeedContent";
 import NewsFeedNav from "../components/NewsFeedComponent/NewsFeedNav";
 import NewsFeedSuggestion from "../components/NewsFeedComponent/NewsFeedSuggestions";
 import ProfileCard from "../components/NewsFeedComponent/ProfileCard";
@@ -13,7 +13,7 @@ import CreatePost from "../components/TimelineComponent/CreatePost"
 const NewsFeedPeople = () => {
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <div id="page-contents">
         <Container>
           <Row>
@@ -32,7 +32,7 @@ const NewsFeedPeople = () => {
           </Row>
         </Container>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };

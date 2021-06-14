@@ -1,11 +1,11 @@
 import React from "react"
-import Footer from "../components/LayoutComponent/Footer"
-import Header from "../components/LayoutComponent/Header"
+// import Footer from "../components/LayoutComponent/Footer"
+// import Header from "../components/LayoutComponent/Header"
 import notfound from "../images/404.png"
 const NotFound =()=>{
     return(
         <>
-        <Header/>
+        {/* <Header/> */}
         <div className="error-page">
       <div className="error-content">
         <div className="container">
@@ -24,7 +24,7 @@ const NotFound =()=>{
         </div>
     	</div>
     </div>
-    <Footer/>
+    {/* <Footer/> */}
         </>
     )
 }

@@ -2,7 +2,10 @@ import React from "react";
 import {Row,Col} from "react-bootstrap"
 import {NavLink} from "react-router-dom"
 import sarah from "../../images/sarah.jpg"
+import Cookies from "universal-cookie"
 const ProfileCover = () => {
+  const cookies = new Cookies();
+  let student  = JSON.parse(localStorage.getItem("newStudent"))
   return (
     <>
       <div class="timeline-cover">
@@ -12,12 +15,12 @@ const ProfileCover = () => {
             <Col md={3}>
               <div class="profile-info">
                 <img
-                  src={sarah}
+                  src={student.student.profilePicture}
                   alt=""
                   class="img-responsive profile-photo"
                 />
-                <h3>Sarah Cruiz</h3>
-                <p class="text-muted">Creative Director</p>
+                <h3 style={{textTransform:"capitalize"}}>{student.student.firstName} {student.student.lastName}</h3>
+                <p class="text-muted" style={{textTransform:"capitalize"}}>Studies At {student.student.universityName}</p>
               </div>
             </Col>
             <Col md={9}>
@@ -41,7 +44,7 @@ const ProfileCover = () => {
               </li>
               </ul>
               <ul class="follow-me list-inline">
-                <li>1,299 people following her</li>
+                <li>{student.friends.length} Friends</li>
                 <li>
                   <button class="btn-primary">Add Friend</button>
                 </li>
