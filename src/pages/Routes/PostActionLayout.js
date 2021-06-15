@@ -28,7 +28,7 @@ const studentLayoutRoute = ({isAuth,component: Component, ...rest}) => {
 //   affiliated_kitchen.remove("affiliatedKitchen");
 //   localStorage.clear();
 isAuth=localStorage.getItem('studentSignup');
-
+  
     return ( 
       <> 
       <Route {...rest} render={matchProps => (  

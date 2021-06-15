@@ -22,7 +22,7 @@ const registrationLayoutRoute = ({component: Component, ...rest}) => {
 //   const secondaryEmailKitchenUserCookies = new Cookies();
 //   const food_user = new Cookies();
 //   const affiliated_kitchen = new Cookies();
-   cookies.remove("student");
+  //  cookies.remove("student");
 //   food_user.remove("fooduserdetails")
 //   secondaryEmailKitchenUserCookies.remove("kitchenUserSecondaryEmail")
 //   secondaryEmailFoodUserCookies.remove("foodUserSecondaryEmail")

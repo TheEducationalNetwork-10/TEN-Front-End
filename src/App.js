@@ -72,12 +72,11 @@ function App() {
       <HomeLayout exact path="/contact" component={Contact} />
       <HomeLayout exact path="/faq" component={FAQ}/>
 
-      <RegistrationLayout exact path="/register" component={()=><UserRegistration isAuth={setIsAuth(true)} isStudentAuth={setIsUserAuth(true)}/>} />
+      <RegistrationLayout exact path="/register" component={()=><UserRegistration isLoginAuth={setIsAuth(true)} isStudentAuth={setIsUserAuth(true)}/>} />
       <RegistrationLayout exact path="/forgot-password-form" component={()=><ForgotPasswordModal isStudentAuth={setIsUserAuth(true)}/>} />
 
       
-      <PostActionLayout exact path="/forgot-password/:forgotEmail" component={()=><ForgotPassword/>} />
-      <PostActionLayout exact path="/student-email-verification/:studentID" component={()=><StudentEmailVerification/>} />
+     
       <StudentLayout isAuth={isAuth} exact path="/edit-profile" component={EditProfile}/>
       <StudentLayout isAuth={isAuth} exact path="/edit-profile-interests" component={EditProfileInterest}/>
       <StudentLayout isAuth={isAuth} exact path="/edit-profile-password" component={EditProfilePassword}/>
@@ -95,6 +94,9 @@ function App() {
       <StudentLayout isAuth={isAuth} exact path="/newsfeed-videos" component={NewsFeedMedia}/>
       <StudentLayout isAuth={isAuth} exact path="/newsfeed-images" component={NewsFeedImages}/>
       <StudentLayout isAuth={isAuth} exact path="/newsfeed-messages" component={NewsFeedMessages}/>
+
+      <PostActionLayout exact path="/forgot-password/:forgotEmail" component={()=><ForgotPassword/>} />
+      <PostActionLayout exact path="/:studentID" component={()=><StudentEmailVerification/>} />
       <StudentLayout isAuth={isAuth} component={NotFound} />
     </Switch>
     </>

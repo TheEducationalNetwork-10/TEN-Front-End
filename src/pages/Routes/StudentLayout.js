@@ -18,20 +18,9 @@ const StudentLayout = ({children}) => {
     )
 }
 const studentLayoutRoute = ({isAuth,component: Component, ...rest}) => {  
-//   const cookies = new Cookies();
-//   const kitchencookie = new Cookies();
-//   const secondaryEmailFoodUserCookies = new Cookies();
-//   const secondaryEmailKitchenUserCookies = new Cookies();
-//   const food_user = new Cookies();
-//   const affiliated_kitchen = new Cookies();
-//   cookies.remove("fooduser");
-//   food_user.remove("fooduserdetails")
-//   secondaryEmailKitchenUserCookies.remove("kitchenUserSecondaryEmail")
-//   secondaryEmailFoodUserCookies.remove("foodUserSecondaryEmail")
-//   kitchencookie.remove("kitchenuser"); 
-//   affiliated_kitchen.remove("affiliatedKitchen");
-//   localStorage.clear();
-isAuth=localStorage.getItem('studentAuth');
+  isAuth=localStorage.getItem('studentAuth');
+  console.log(isAuth)
+
 
     return ( 
       <> 

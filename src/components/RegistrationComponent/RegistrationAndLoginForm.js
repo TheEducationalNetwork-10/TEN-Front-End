@@ -6,10 +6,10 @@ import DatePicker from "react-datepicker";
 import axiosConfig from "../../Config/axiosConfig";
 import Cookies from "universal-cookie";
 import "react-datepicker/dist/react-datepicker.css";
-const RegistrationAndLoginForm = ({ isAuth, isStudentAuth }) => {
+const RegistrationAndLoginForm = ({ isLoginAuth, isStudentAuth }) => {
   const newcookies = new Cookies();
   let history = useHistory();
-  isAuth = false;
+  isLoginAuth = false;
   const [isLoading, setIsLoading] = useState(false);
   const [isRegisterLoading, setIsRegisterLoading] = useState(false);
   const [docForm, setDocForm] = useState([]);
@@ -66,7 +66,7 @@ const RegistrationAndLoginForm = ({ isAuth, isStudentAuth }) => {
           localStorage.setItem("studentSignup", isStudentAuth);
           // console.log(response.data)
           history.push({
-            pathname: `/student-email-verification/${response.data.data._id}`,
+            pathname: `/${response.data.data._id}`,
             state: response.data.data._id,
           });
           setIsRegisterLoading(false);
@@ -94,14 +94,14 @@ const RegistrationAndLoginForm = ({ isAuth, isStudentAuth }) => {
       .then(function (response) {
         if (response.status === 200) {
           if (response.data.data.student.isApproved) {
-            isAuth = true;
+            isLoginAuth = true;
             setMessages({
               loginError: "",
               registerSuccess: "",
               registerError: "",
             });
-            console.log(response.data.data)
-            localStorage.setItem("studentAuth", isAuth);
+            // console.log(response.data.data)
+            localStorage.setItem("studentAuth", isLoginAuth);
             localStorage.setItem("newStudent",JSON.stringify(response.data.data))
             // newcookies.set("newstudent", response.data.data, {
             //   path: "/",
@@ -110,11 +110,11 @@ const RegistrationAndLoginForm = ({ isAuth, isStudentAuth }) => {
             history.push("/newsfeed");
             setIsLoading(false);
           } else {
-            isAuth = true;
-            localStorage.setItem("studentSignup", isAuth);
+            isLoginAuth = true;
+            localStorage.setItem("studentSignup", isLoginAuth);
             setIsLoading(false);
             history.push({
-              pathname: `/student-email-verification/${response.data.data.student._id}`,
+              pathname: `/${response.data.data.student._id}`,
               state: response.data.data.student._id,
             });
           }
