@@ -75,9 +75,9 @@ function App() {
       <RegistrationLayout exact path="/register" component={()=><UserRegistration isAuth={setIsAuth(true)} isStudentAuth={setIsUserAuth(true)}/>} />
       <RegistrationLayout exact path="/forgot-password-form" component={()=><ForgotPasswordModal isStudentAuth={setIsUserAuth(true)}/>} />
 
-      <PostActionLayout exact path="/student-email/:studentID" component={()=><StudentEmailVerification/>} />
+      
       <PostActionLayout exact path="/forgot-password/:forgotEmail" component={()=><ForgotPassword/>} />
-
+      <PostActionLayout exact path="/student-email-verification/:studentID" component={()=><StudentEmailVerification/>} />
       <StudentLayout isAuth={isAuth} exact path="/edit-profile" component={EditProfile}/>
       <StudentLayout isAuth={isAuth} exact path="/edit-profile-interests" component={EditProfileInterest}/>
       <StudentLayout isAuth={isAuth} exact path="/edit-profile-password" component={EditProfilePassword}/>
