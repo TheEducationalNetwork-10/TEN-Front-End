@@ -66,7 +66,7 @@ const RegistrationAndLoginForm = ({ isAuth, isStudentAuth }) => {
           localStorage.setItem("studentSignup", isStudentAuth);
           // console.log(response.data)
           history.push({
-            pathname: `/student-email-verification/${response.data.data._id}`,
+            pathname: `/student-email/${response.data.data._id}`,
             state: response.data.data._id,
           });
           setIsRegisterLoading(false);
@@ -89,6 +89,7 @@ const RegistrationAndLoginForm = ({ isAuth, isStudentAuth }) => {
   const handleFormLogin = (e) => {
     e.preventDefault();
     setIsLoading(true);
+    isAuth = true;
     axiosConfig
       .post("/students/login", login)
       .then(function (response) {
@@ -100,7 +101,7 @@ const RegistrationAndLoginForm = ({ isAuth, isStudentAuth }) => {
               registerSuccess: "",
               registerError: "",
             });
-            console.log(response.data.data)
+            // console.log(response.data.data)
             localStorage.setItem("studentAuth", isAuth);
             localStorage.setItem("newStudent",JSON.stringify(response.data.data))
             // newcookies.set("newstudent", response.data.data, {
@@ -114,7 +115,7 @@ const RegistrationAndLoginForm = ({ isAuth, isStudentAuth }) => {
             localStorage.setItem("studentSignup", isAuth);
             setIsLoading(false);
             history.push({
-              pathname: `/student-email-verification/${response.data.data.student._id}`,
+              pathname: `/student-email/${response.data.data.student._id}`,
               state: response.data.data.student._id,
             });
           }
