@@ -14,12 +14,19 @@ const PeopleNearby = () => {
     success: "",
   });
   const getStudents = () => {
-    axiosConfig.get(`/students`).then(function (response) {
-      if (response.status === 200) {
-        setSuggestions(response.data.data);
-        //  console.log(response.data.data)
-      }
-    });
+    // console.log("Gets")
+    axiosConfig
+      .get(`/students`)
+      .then(function (response) {
+        if (response.status === 200) {
+          setSuggestions(response.data.data);
+          // console.log("here2s")
+          //   console.log(response.data.data)
+        }
+      })
+      .catch(function (err) {
+        console.log(err);
+      });
   };
   const fetchData = () => {
     axiosConfig
@@ -38,8 +45,10 @@ const PeopleNearby = () => {
   };
   useEffect(() => {
     getStudents();
-    fetchData();
   }, []);
+  useEffect(() => {
+    fetchData();
+  }, [fetchData()]);
   const [error, setError] = useState({
     friend: "",
     cancel: "",
@@ -92,19 +101,16 @@ const PeopleNearby = () => {
   const [isFriend, setIsFriend] = useState([]);
   //  const [isIndex,setIsIndex] = useState([])
   const requestFilter = (suggestionInd) => {
-    if(student.requestsSent.length > 0){
+    if (student.requestsSent.length > 0) {
       for (let i = 0; i < student.requestsSent.length; i++) {
-        if (
-          suggestions[suggestionInd]._id === student.requestsSent[i]._id
-        ) {
+        if (suggestions[suggestionInd]._id === student.requestsSent[i]._id) {
           isPresent.push(true);
         } else {
           isPresent.push(false);
         }
       }
       return isPresent[suggestionInd];
-    }
-    else {
+    } else {
       return;
     }
   };
@@ -127,62 +133,70 @@ const PeopleNearby = () => {
 
   // },[isIndex])
   // console.log(student);
+  // console.log("here2s")
+  console.log(suggestions);
   return (
     <>
       <div class="people-nearby">
         <h1 className="text-center">People You May Know</h1>
-        {suggestions
-          .filter((suggestion) => suggestion._id !== student.student._id)
-          .map((data, index) => {
-            return (
-              <Fragment key={nanoid()}>
-                {friendFilter(index) ? (
+        {suggestions.length > 0 ? (
+          suggestions
+            .filter((suggestion) => suggestion._id !== student.student._id)
+            .map((data, index) => {
+              return (
+                <Fragment key={nanoid()}>
                   <>
-                    <div class="nearby-user">
-                      <Row>
-                        <Col md={2} sm={2}>
-                          <img
-                            src={data.profilePicture}
-                            alt={data.firstName}
-                            class="profile-photo-lg"
-                          />
-                        </Col>
-                        <Col md={7} sm={7}>
-                          <h5>
-                            <NavLink to="#" class="profile-link">
-                              {data.firstName} {data.lastName}
-                            </NavLink>
-                          </h5>
-                          <p style={{ textTransform: "capitalize" }}>
-                            Studies At: {data.universityName}
-                          </p>
-                          <p className="text-muted">From: {data.city}</p>
-                        </Col>
-                        <Col md={3} sm={3}>
-                          {/* {isIndex.push(index) } */}
-                          {requestFilter(index) ? (
-                            <button
-                              onClick={() => cancelFriendRequest(data._id)}
-                              className="btn btn-primary pull-right"
-                            >
-                              Cancel Request
-                            </button>
-                          ) : (
-                            <button
-                              onClick={() => friendRequest(data._id)}
-                              className="btn btn-primary pull-right"
-                            >
-                              Add A Friend
-                            </button>
-                          )}
-                        </Col>
-                      </Row>
-                    </div>
+                    {data.isApproved? (
+                      <div class="nearby-user">
+                        <Row>
+                          <Col md={2} sm={2}>
+                            <img
+                              src={data.profilePicture}
+                              alt={data.firstName}
+                              class="profile-photo-lg"
+                            />
+                          </Col>
+                          <Col md={7} sm={7}>
+                            <h5>
+                              <NavLink to="#" class="profile-link">
+                                {data.firstName} {data.lastName}
+                              </NavLink>
+                            </h5>
+                            <p style={{ textTransform: "capitalize" }}>
+                              Studies At: {data.universityName}
+                            </p>
+                            <p className="text-muted">From: {data.city}</p>
+                          </Col>
+                          <Col md={3} sm={3}>
+                            {/* {isIndex.push(index) } */}
+                            {requestFilter(index) ? (
+                              <button
+                                onClick={() => cancelFriendRequest(data._id)}
+                                className="btn btn-primary pull-right"
+                              >
+                                Cancel Request
+                              </button>
+                            ) : (
+                              <button
+                                onClick={() => friendRequest(data._id)}
+                                className="btn btn-primary pull-right"
+                              >
+                                Add A Friend
+                              </button>
+                            )}
+                          </Col>
+                        </Row>
+                      </div>
+                    ) : null}
                   </>
-                ) : null}
-              </Fragment>
-            );
-          })}
+                </Fragment>
+              );
+            })
+        ) : (
+          <div className="loading">
+            <Spinner animation="border" variant="primary" />
+          </div>
+        )}
         {messages.success ? (
           <p className="success">{messages.success}</p>
         ) : null}

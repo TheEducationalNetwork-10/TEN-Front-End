@@ -2,6 +2,7 @@ import { nanoid } from "nanoid";
 import React, { Fragment,useEffect,useState } from "react";
 import { NavLink } from "react-router-dom";
 import axiosConfig from "../../Config/axiosConfig"
+import {Spinner} from "react-bootstrap"
 // import diana from "../../images/diana.jpg";
 // import john from "../../images/john.jpg";
 // import sarah from "../../images/sarah.jpg";
@@ -29,7 +30,7 @@ const NewsFeedContent = () => {
 
   return (
     <>
-      {posts.map((postData) => {
+      {posts.length > 0 ? posts.slice(0).reverse().map((postData) => {
         return (
           <Fragment key={nanoid()}>
             <div class="post-content">
@@ -124,7 +125,11 @@ const NewsFeedContent = () => {
             </div>
           </Fragment>
         );
-      })}
+      }):(
+        <div className="loading">
+          <Spinner animation="border" variant="primary" />
+        </div>
+      )}
     </>
   );
 };

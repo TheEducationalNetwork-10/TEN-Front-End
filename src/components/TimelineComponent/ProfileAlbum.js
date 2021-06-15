@@ -1,5 +1,6 @@
 import React,{useState, useEffect,Fragment} from "react";
 import { nanoid } from "nanoid";
+import {Spinner} from "react-bootstrap"
 import axiosConfig from "../../Config/axiosConfig";
 const ProfileAlbum = () => {
   const [posts,setPosts] = useState([])
@@ -19,48 +20,11 @@ const ProfileAlbum = () => {
   useEffect(() => {
     fetchPosts();
   },[])
-  const Album = [
-    {
-      img: "http://placehold.it/1000x1000",
-      modalTargetClass: "photo-1",
-    },
-    {
-      img: "http://placehold.it/1000x1000",
-      modalTargetClass: "photo-2",
-    },
-    {
-      img: "http://placehold.it/1000x1000",
-      modalTargetClass: "photo-3",
-    },
-    {
-      img: "http://placehold.it/1000x1000",
-      modalTargetClass: "photo-4",
-    },
-    {
-      img: "http://placehold.it/1000x1000",
-      modalTargetClass: "photo-5",
-    },
-    {
-      img: "http://placehold.it/1000x1000",
-      modalTargetClass: "photo-6",
-    },
-    {
-      img: "http://placehold.it/1000x1000",
-      modalTargetClass: "photo-7",
-    },
-    {
-      img: "http://placehold.it/1000x1000",
-      modalTargetClass: "photo-8",
-    },
-    {
-      img: "http://placehold.it/1000x1000",
-      modalTargetClass: "photo-9",
-    },
-  ];
+ 
   return (
     <>
       <ul class="album-photos">
-        {posts.map((data,index) => {
+        {posts.length > 0 ? posts.map((data,index) => {
           return (
             <Fragment key={nanoid()}>
                {data.attachment ? (
@@ -93,7 +57,11 @@ const ProfileAlbum = () => {
                 
             </Fragment>
           );
-        })}
+        }): (
+          <div className="loading">
+            <Spinner animation="border" variant="primary" />
+            </div>
+        )}
       </ul>
     </>
   );

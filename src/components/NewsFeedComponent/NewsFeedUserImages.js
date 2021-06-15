@@ -1,8 +1,8 @@
 import React, { Fragment,useState, useEffect} from "react";
-import Diana from "../../images/diana.jpg";
-import John from "../../images/john.jpg";
-import { Row, Col } from "react-bootstrap";
-import Sarah from "../../images/sarah.jpg";
+// import Diana from "../../images/diana.jpg";
+// import John from "../../images/john.jpg";
+import { Row, Col,Spinner } from "react-bootstrap";
+// import Sarah from "../../images/sarah.jpg";
 import { nanoid } from "nanoid";
 import { NavLink } from "react-router-dom";
 import profile from "../../images/profileImg.png"
@@ -34,7 +34,7 @@ const NewsFeedUserImages = () => {
           className="js-masonry"
           data-masonry='{ "itemSelector": ".grid-item", "columnWidth": ".grid-sizer", "percentPosition": true }'
         >
-          {posts.map((data,index) => {
+          {posts.length > 0 ? posts.map((data,index) => {
             return (
               
               <Fragment key={nanoid()}>
@@ -182,7 +182,11 @@ const NewsFeedUserImages = () => {
                 
               </Fragment>
             );
-          })}
+          }):(
+            <div className="loading">
+              <Spinner animation="border" variant="primary" />
+              </div>
+          )}
         </Row>
       </div>
     </>

@@ -33,15 +33,18 @@ const fetchData = () =>{
     axiosConfig.get(`/students`).then(function (response) {
         if (response.status === 200) {
             setSuggestions(response.data.data);
-            // console.log(response.data.data)
+            // console.log("here2")
+            //  console.log(response.data.data)
         }
       });
   }
 
   useEffect(() => {
-    getStudents();
     fetchData();
- }, []);
+ }, [fetchData()]);
+ useEffect(() => {
+  getStudents();
+}, []);
  const friendRequest=(id)=>{
   setIsLoading(true)
   axiosConfig
@@ -116,11 +119,11 @@ const friendFilter = (suggestionInd) => {
     <>
       <div class="suggestions" id="sticky-sidebar">
         <h4 class="grey">Who to Follow</h4>
-        {suggestions.filter(suggestion => suggestion._id !== student.student._id).map((data,index) => {
+        {suggestions.length > 0  ? suggestions.filter(suggestion => suggestion._id !== student.student._id).map((data,index) => {
           return (
             <Fragment key={nanoid()}>
-               {friendFilter(index) ? (
-              <div class="follow-user">
+              {data.isApproved ? (
+                <div class="follow-user">
                 <img
                   src={data.profilePicture}
                   alt={data.firstName}
@@ -142,10 +145,16 @@ const friendFilter = (suggestionInd) => {
                   
                 </div>
               </div>
-               ): null}
+              ): null}
+              
+            
             </Fragment>
           );
-        })}
+        }):(
+          <div className="loading">
+          <Spinner animation="border" variant="primary" />
+          </div>
+        )}
         {error.friend ? (
             <p className="error">{error.friend}</p> 
         ): null}

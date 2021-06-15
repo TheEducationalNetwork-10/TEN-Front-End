@@ -5,8 +5,8 @@ import Cookies from "universal-cookie"
 const ProfileCard = () =>{
     const cookies = new Cookies();
     let student = JSON.parse(localStorage.getItem("newStudent"))
-    console.log("here")
-    console.log(student)
+    //// c console.log("here")
+    // console.log(student)
     return(
         <>
         <div class="profile-card">

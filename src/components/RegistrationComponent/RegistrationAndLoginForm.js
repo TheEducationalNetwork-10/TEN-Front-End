@@ -123,9 +123,9 @@ const RegistrationAndLoginForm = ({ isLoginAuth, isStudentAuth }) => {
 
       .catch((error) => {
         setIsLoading(false);
-        console.log(error)
+        // console.log(error)
         setMessages({
-          loginError:error,
+          loginError:error.response.data.message,
           registerSuccess: "",
           registerError: "",
         });

@@ -44,14 +44,14 @@ const PostContent = () => {
   return (
     <>
       {postData.length > 0 ? (
-        postData.map((data) => {
+        postData.slice(0).reverse().map((data) => {
           return (
             <>
               <div className="post-content" key={nanoid()}>
                 {/* <!--Post Date--> */}
                 <div className="post-date hidden-xs hidden-sm">
                   <h5>{data.firstName}</h5>
-                  <p className="text-grey">{data.createdAt.split("-")[0]}</p>
+                  <p className="text-grey">{data.createdAt.split("-")[0]}-{data.createdAt.split("-")[1]}</p>
                 </div>
                 {/* <!--Post Date End--> */}
                 {data.attachment ? (
